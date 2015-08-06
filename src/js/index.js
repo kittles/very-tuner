@@ -1,4 +1,5 @@
 /* global ImageData */
+require("./lib/analytics.js")();
 require("./lib/autoCurry.js")();
 require("./lib/trim.js")();
 require("./lib/docReady.js")();
