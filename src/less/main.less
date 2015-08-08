@@ -3,18 +3,57 @@
 body {
     text-align: center;
     height: 100vh;
+    font-family: 'Inconsolata', sans-serif;
+}
+#whole-thing {
+    max-width: 400px;
+    margin: 0px auto;
+}
+#strobes {
+    margin-top: 20px;
+}
+.info {
+    margin-left: 20px;
+    margin-right: 20px;
+    opacity: 0;
+    transform: translateY(-10px);
 }
 .strobe-container {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 40px;
+    opacity: 0;
 }
 .strobe-canvas {
     position: absolute;
     left: 0px;
-    width: 100vw;
+    width: 100%;
     height: 40px;
     margin-bottom: -4px;
+}
+.trans-9 {
+    transition: 0.9s all ease;
+}
+.trans-4 {
+    transition: 0.4s all ease;
+}
+.trans-3 {
+    transition: 0.3s all ease;
+}
+.trans-2 {
+    transition: 0.2s all ease;
+}
+.trans-1 {
+    transition: 0.1s all ease;
+}
+.fade-in {
+    opacity: 1;
+}
+.fade-out {
+    opacity: 0;
+}
+.no-top {
+    transform: translateY(0px);
 }
 .letter {
     position: absolute;

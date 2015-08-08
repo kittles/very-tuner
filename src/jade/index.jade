@@ -6,37 +6,44 @@ html.no-js
     meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
 
     //title Cool Page
-    //meta(name="description", content="Some Cool Site")
+    meta(name="description", content="Very Tuner")
 
-    //meta(property="og:title" content="")
-    //meta(property="og:type" content="website")
-    //meta(property="og:image" content="")
-    //meta(property="og:url" content="")
-    //meta(property="og:description" content="")
-    //meta(property="og:site_name" content="")
-    //meta(name="google-site-verification" content="")
+    meta(property="og:title" content="Very Tuner")
+    meta(property="og:type" content="website")
+    meta(property="og:image" content="")
+    meta(property="og:url" content="www.verytuner.com")
+    meta(property="og:description" content="a colorful strobe tuner")
+    meta(property="og:site_name" content="Very Tuner")
+    meta(name="google-site-verification" content="")
 
     // use fav icon app online to get these
-    //link(rel="apple-touch-icon" sizes="57x57" href="./fav_icons/apple-icon-57x57.png")
-    //link(rel="apple-touch-icon" sizes="60x60" href="./fav_icons/apple-icon-60x60.png")
-    //link(rel="apple-touch-icon" sizes="72x72" href="./fav_icons/apple-icon-72x72.png")
-    //link(rel="apple-touch-icon" sizes="76x76" href="./fav_icons/apple-icon-76x76.png")
-    //link(rel="apple-touch-icon" sizes="114x114" href="./fav_icons/apple-icon-114x114.png")
-    //link(rel="apple-touch-icon" sizes="120x120" href="./fav_icons/apple-icon-120x120.png")
-    //link(rel="apple-touch-icon" sizes="144x144" href="./fav_icons/apple-icon-144x144.png")
-    //link(rel="apple-touch-icon" sizes="152x152" href="./fav_icons/apple-icon-152x152.png")
-    //link(rel="apple-touch-icon" sizes="180x180" href="./fav_icons/apple-icon-180x180.png")
-    //link(rel="icon" type="image/png" sizes="192x192" href="./fav_icons/android-icon-192x192.png")
-    //link(rel="icon" type="image/png" sizes="32x32" href="./fav_icons/favicon-32x32.png")
-    //link(rel="icon" type="image/png" sizes="96x96" href="./fav_icons/favicon-96x96.png")
-    //link(rel="icon" type="image/png" sizes="16x16" href="./fav_icons/favicon-16x16.png")
-    //link(rel="manifest" href="./fav_icons/manifest.json")
-    //meta(name="msapplication-TileColor" content="#ffffff")
-    //meta(name="msapplication-TileImage" content="./fav_icons/ms-icon-144x144.png")
-    //meta(name="theme-color" content="#ffffff")
+    link(rel="apple-touch-icon" sizes="57x57" href="./fav-icons/apple-icon-57x57.png")
+    link(rel="apple-touch-icon" sizes="60x60" href="./fav-icons/apple-icon-60x60.png")
+    link(rel="apple-touch-icon" sizes="72x72" href="./fav-icons/apple-icon-72x72.png")
+    link(rel="apple-touch-icon" sizes="76x76" href="./fav-icons/apple-icon-76x76.png")
+    link(rel="apple-touch-icon" sizes="114x114" href="./fav-icons/apple-icon-114x114.png")
+    link(rel="apple-touch-icon" sizes="120x120" href="./fav-icons/apple-icon-120x120.png")
+    link(rel="apple-touch-icon" sizes="144x144" href="./fav-icons/apple-icon-144x144.png")
+    link(rel="apple-touch-icon" sizes="152x152" href="./fav-icons/apple-icon-152x152.png")
+    link(rel="apple-touch-icon" sizes="180x180" href="./fav-icons/apple-icon-180x180.png")
+    link(rel="icon" type="image/png" sizes="192x192" href="./fav-icons/android-icon-192x192.png")
+    link(rel="icon" type="image/png" sizes="32x32" href="./fav-icons/favicon-32x32.png")
+    link(rel="icon" type="image/png" sizes="96x96" href="./fav-icons/favicon-96x96.png")
+    link(rel="icon" type="image/png" sizes="16x16" href="./fav-icons/favicon-16x16.png")
+    link(rel="manifest" href="./fav-icons/manifest.json")
+    meta(name="msapplication-TileColor" content="#ffffff")
+    meta(name="msapplication-TileImage" content="./fav-icons/ms-icon-144x144.png")
+    meta(name="theme-color" content="#ffffff")
 
+    link(href="http://fonts.googleapis.com/css?family=Inconsolata:700" rel="stylesheet" type="text/css")
     link(rel="stylesheet", href="./style.css")
   body
-    #strobes
+    #whole-thing
+      #strobes
+      .info.trans-9
+        p.
+          Each bar represents a strobe tuner for the pitch name on it's left (in the 4th octave). 
+          Make a sound to see the strobes in action. A note is
+          in tune when the bar stays still.
     script(src="./bundle.js")
     //script(src="./bundle.min.js")

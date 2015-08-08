@@ -41,6 +41,7 @@ function init () {
     getAudio(audioHandler)
     .then(connectSource)
     .then(initStrobes)
+    .then(addInfo)
     .then(draw)
     .catch(function (e) {
         // load error page
@@ -115,7 +116,6 @@ function Strobe (pitch, color, idx) {
     this.letterText = document.createTextNode(this.letter);
     this.letterEl.style.color = "rgb(" + this.color.r + ", " + this.color.g + ", " + this.color.b + ")";
     this.setOpacity = setOpacity.ac()(this.letterEl);
-    this.setOpacity(0);
 
     // canvas
     this.canvas = document.createElement("canvas");
@@ -134,13 +134,6 @@ function Strobe (pitch, color, idx) {
     this.eq.type = "bandpass";
     this.eq.frequency.value = this.hz;
     this.eq.Q.value = 60;
-    //this.compressor = ctx.createDynamicsCompressor();
-    //this.compressor.threshold.value = -50;
-    //this.compressor.knee.value = 40;
-    //this.compressor.ratio.value = 12;
-    //this.compressor.reduction.value = -20;
-    //this.compressor.attack.value = 0;
-    //this.compressor.release.value = 0.25;
     this.processor = ctx.createScriptProcessor(this.processor_buffer_size, 1, 1);
     this.processor.onaudioprocess = function onaudioprocess (e) {
         this.buffer = e.inputBuffer.getChannelData(0);
@@ -148,12 +141,42 @@ function Strobe (pitch, color, idx) {
         this.new_buffer = true;
     }.bind(this);
     gain.connect(this.eq);
-    //this.eq.connect(this.compressor);
-    //this.compressor.connect(this.processor);
     this.eq.connect(this.processor);
     this.processor.connect(ctx.destination);
 
-    this.draw = function draw () {
+    // replace draw method once intro is done
+    this.draw = function drawIntro () {
+        for (var i = 0; i < this.processor_samples; i++) {
+            var pxData = {
+                r: this.color.r,
+                g: this.color.g,
+                b: this.color.b,
+                a: 255
+            };
+            setImgDataAtPoint(this.imgData, i, 0, pxData);
+        }
+        this.canvasCtx.putImageData(this.imgData, 0, 0);
+        this.container.className += " trans-3 fade-in";
+        setTimeout(fadeOut.bind(this), 300);
+        function fadeOut () {
+            this.container.className = this.container.className.replace("fade-in", "fade-out");
+        }
+        // dont draw for a bit while transition is happening
+        this.draw = function () {
+            return;
+        };
+        // when transition is done, replace with real draw function
+        setTimeout(replaceDraw.bind(this), 700);
+        function replaceDraw () {
+            this.draw = draw;
+            setTimeout(showContainer.bind(this), 200);
+            function showContainer () {
+                this.container.style.opacity = 1;
+            }
+        }
+    }.bind(this);
+
+    function draw () {
         if (this.buffer) {
             // better version would step through the buffer if its the second
             // time drawing it etc
@@ -173,7 +196,7 @@ function Strobe (pitch, color, idx) {
             this.canvasCtx.putImageData(this.imgData, 0, 0);
             this.setOpacity(opacity);
         }
-    }.bind(this);
+    }
 }
 function initStrobes () {
     strobes = PITCHES.map(function (pitch, idx, arr) {
@@ -185,7 +208,19 @@ function initStrobes () {
     strobes.map(function (strobe) {
         container.appendChild(strobe.container);
     });
-    window.strobes = strobes;
+    return Q.all(strobes.map(function (strobe, idx, arr) {
+        var response = Q.defer();
+        container.appendChild(strobe.container);
+        setTimeout(function () {
+            strobe.draw();
+            response.resolve();
+        }, idx * 100);
+        return response.promise;
+    }));
+}
+function addInfo () {
+    var info = document.getElementsByClassName("info")[0];
+    info.className += " fade-in no-top";
 }
 
 
