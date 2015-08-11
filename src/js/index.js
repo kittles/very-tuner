@@ -45,7 +45,7 @@ function init () {
     .then(draw)
     .catch(function (e) {
         // load error page
-        console.log("caught during init");
+        document.getElementById("error").style.display = "flex";
         throw(e);
     })
     .done(function () {
